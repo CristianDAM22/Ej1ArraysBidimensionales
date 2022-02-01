@@ -1,5 +1,7 @@
 package ej1arraysbi_cristiang;
 
+//Las ventas son de un modelo por eso ventas trimestre va en esta clase
+
 public class Modelo {
 
     private String nombre;
