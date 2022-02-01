@@ -47,7 +47,7 @@ public class Concesionario {
             nombre = Utilidad.pedirString("Nombre del modelo: ");
             menu();
             tipo = Utilidad.pedirNumeroEntero("Introduce un tipo: ", 0, tipos.length - 1);
-            modelos[nmodelo].grabar(nombre,tipo);
+            modelos[nmodelo].grabar(nombre, tipo);
         }
     }
 
@@ -55,6 +55,29 @@ public class Concesionario {
         for (int tipo = 0; tipo < tipos.length; tipo++) {
             System.out.println(tipo + "---->" + tipos[tipo]);
         }
+    }
+
+    public void pedirVentasMes() {
+        String[] meses = {"Enero", "Febreo", "Marzo", "Abril", "Mayo", "Junio"};
+        float importe;
+        float[] ventas;
+        for (int nModelo = 0; nModelo < modelos.length; nModelo++) 
+        {
+            ventas=new float[6];/*Si lo pones fuera del for creat solo 6 pero como lo pones dentro 
+                                    crea 6 ventas por cada modelo*/
+            System.out.println("MODELOS "+modelos[nModelo].getNombre());
+            System.out.println("Ventas");
+
+            for (int mes = 0; mes < modelos[nModelo].getVentas().length; mes++) 
+            {
+                //importe = Utilidad.pedirNumeroReal(meses[mes] + "\t", 0);
+               // modelos[nModelo].setUnaVenta(importe, mes);
+                ventas[mes] = Utilidad.pedirNumeroReal(meses[mes] + "\t", 0);
+            }
+            modelos[nModelo].setVentas(ventas);/*Este set vrea las ventas una vez has pasado todas el set de arriba + lo de modelos
+                                                   crea las ventas una por una*/
+        }
+
     }
 
 }
