@@ -7,6 +7,7 @@ public class Ej1ArraysBi_CristianG {
         miEmpresa.crear();
         miEmpresa.pedirDatos();
         miEmpresa.pedirVentasMes();
+        miEmpresa.informe();
     }
 
 }

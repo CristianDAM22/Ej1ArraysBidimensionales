@@ -52,7 +52,7 @@ public class Modelo {
         ventas[mes] = venta;
     }
 
-    public float ventasTrimestre(int valor) {
+    public float ventasTrimestre(int valor) {//VALOR ES EL MES EN EL QUE QIERO EMPEZAR
         float total = 0;
         int finalt = valor + 3;
         for (int mes = valor; mes < finalt; mes++) {

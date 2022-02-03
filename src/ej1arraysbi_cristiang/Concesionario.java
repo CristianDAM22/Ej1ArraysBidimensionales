@@ -1,5 +1,6 @@
 package ej1arraysbi_cristiang;
 
+import fecha.Fecha;
 import textoandnumeros.Utilidad;
 
 public class Concesionario {
@@ -61,23 +62,66 @@ public class Concesionario {
         String[] meses = {"Enero", "Febreo", "Marzo", "Abril", "Mayo", "Junio"};
         float importe;
         float[] ventas;
-        for (int nModelo = 0; nModelo < modelos.length; nModelo++) 
-        {
-            ventas=new float[6];/*Si lo pones fuera del for creat solo 6 pero como lo pones dentro 
+        for (int nModelo = 0; nModelo < modelos.length; nModelo++) {
+            ventas = new float[6];/*Si lo pones fuera del for creat solo 6 pero como lo pones dentro 
                                     crea 6 ventas por cada modelo*/
-            System.out.println("MODELOS "+modelos[nModelo].getNombre());
+            System.out.println("MODELOS " + modelos[nModelo].getNombre());
             System.out.println("Ventas");
 
-            for (int mes = 0; mes < modelos[nModelo].getVentas().length; mes++) 
-            {
+            for (int mes = 0; mes < modelos[nModelo].getVentas().length; mes++) {
                 //importe = Utilidad.pedirNumeroReal(meses[mes] + "\t", 0);
-               // modelos[nModelo].setUnaVenta(importe, mes);
+                // modelos[nModelo].setUnaVenta(importe, mes);
                 ventas[mes] = Utilidad.pedirNumeroReal(meses[mes] + "\t", 0);
             }
-            modelos[nModelo].setVentas(ventas);/*Este set vrea las ventas una vez has pasado todas el set de arriba + lo de modelos
+            modelos[nModelo].setVentas(ventas);/*Este set crea las ventas una vez has pasado todas el set de arriba + lo de modelos
                                                    crea las ventas una por una*/
         }
 
+    }
+
+    public void informe() {
+        float total;
+        float beneficio;
+        int fila;
+        int columna;
+        cabecera();
+        for (int nmodelo = 0; nmodelo < modelos.length; nmodelo++) {
+            System.out.print(modelos[nmodelo].getNombre());
+            System.out.print("\t\t" + modelos[nmodelo].ventasTrimestre(0));
+            System.out.print("\t\t" + modelos[nmodelo].ventasTrimestre(3));
+            total = modelos[nmodelo].ventasTrimestre(0) + modelos[nmodelo].ventasTrimestre(3);
+            System.out.print("\t\t" + total);
+            fila = modelos[nmodelo].getTipo();
+            columna = buscar(total);
+            beneficio = beneficios[fila][columna] * total;
+            System.out.print("\t\t" + beneficio);
+        }
+    }
+
+    private int buscar(float importe) {
+        int pos = 0;
+        while (importe > limites[pos]) {//Esto lo pones asi porque estas seguro de que lo vas a encontrar
+            pos++;
+        }
+        /*pos =0
+        boolean encontrado=false;
+        while(!encontrado && pos<limites.length){
+            if(importe<limites[pos]){
+            encontrado=true;
+            }
+            else{
+                    pos++;
+                    }
+        }
+         */
+        return pos;
+    }
+
+    private void cabecera() {
+        Fecha fhoy = new Fecha();
+        System.out.println("INFORME DE VENTAS");
+        System.out.println("Fecha: " + fhoy.fechaMesLetra());
+        System.out.println("MODELO \t IMPORTE 1TRI \t IMPORTE 2TRI \t TOTAL \t BENEFICIOS");
     }
 
 }
