@@ -84,7 +84,9 @@ public class Concesionario {
         float beneficio;
         int fila;
         int columna;
-        cabecera();
+        int pagina=1;
+        cabecera(pagina);
+        int linea=3;
         for (int nmodelo = 0; nmodelo < modelos.length; nmodelo++) {
             System.out.print(modelos[nmodelo].getNombre());
             System.out.print("\t\t" + modelos[nmodelo].ventasTrimestre(0));
@@ -95,6 +97,12 @@ public class Concesionario {
             columna = buscar(total);
             beneficio = beneficios[fila][columna] * total;
             System.out.print("\t\t" + beneficio);
+            linea++;
+            if(linea==5){
+                pagina++;
+                cabecera(pagina);
+                linea=3;
+            }
         }
     }
 
@@ -117,10 +125,10 @@ public class Concesionario {
         return pos;
     }
 
-    private void cabecera() {
+    private void cabecera(int pagina) {
         Fecha fhoy = new Fecha();
         System.out.println("INFORME DE VENTAS");
-        System.out.println("Fecha: " + fhoy.fechaMesLetra());
+        System.out.println("Fecha: " + fhoy.fechaMesLetra()+"PAGINA: "+pagina);
         System.out.println("MODELO \t IMPORTE 1TRI \t IMPORTE 2TRI \t TOTAL \t BENEFICIOS");
     }
 
